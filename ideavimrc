@@ -23,7 +23,7 @@ map <A-Down> :action MoveLineDown<cr>
 map <A-Up> :action MoveLineUp<cr>
 
 " Open Action Menu
-map <A-x> :action GotoAction
+map <A-x> :action GotoAction<cr>
 
 " evil-escape
 imap jk <Esc>
