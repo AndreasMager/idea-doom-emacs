@@ -9,7 +9,7 @@ set ignorecase
 set matchpairs
 set multiple-cursors
 set number
-set relativenumber
+"set relativenumber
 set smartcase
 set surround
 set wrapscan
@@ -19,8 +19,8 @@ set idearefactormode=visual
 set ideavimsupport=
 
 " Move lines arround
-map <A-Down> :action MoveLineDown<cr>
-map <A-Up> :action MoveLineUp<cr>
+"map <A-Down> :action MoveLineDown<cr>
+"map <A-Up> :action MoveLineUp<cr>
 
 " Open Action Menu
 map <A-x> :action GotoAction<cr>
@@ -43,7 +43,7 @@ nmap zm <Action>(CollapseAllRegions)
 nmap zr <Action>(ExpandAllRegions)
 
 " doom-escape-hook
-nnoremap <Esc> :<C-u>nohl<CR>:<C-u>action HideAllWindows<CR><Esc>
+"nnoremap <Esc> :<C-u>nohl<CR>:<C-u>action HideAllWindows<CR><Esc>
 
 
 "
@@ -422,10 +422,10 @@ let g:WhichKeyDesc_search_project2 = '<leader>sp Search project'
 
 noremap <Leader>wc <C-w>c
 noremap <Leader>wd <C-w>c
-noremap <Leader>wh <C-w>h
-noremap <Leader>wj <C-w>j
-noremap <Leader>wk <C-w>k
-noremap <Leader>wl <C-w>l
+noremap <Leader>wr <C-w>h
+noremap <Leader>wt <C-w>j
+noremap <Leader>wn <C-w>k
+noremap <Leader>ws <C-w>l
 noremap <Leader>ws <C-w>s
 noremap <Leader>wv <C-w>v
 noremap <Leader>ww <C-w>w
@@ -491,7 +491,7 @@ let g:NERDTreeMapToggleZoom = '<Nop>'
 set NERDTree
 
 " vim-which-key
-let g:WhichKey_DefaultDelay = 1000
+let g:WhichKey_DefaultDelay = 700
 let g:WhichKey_ShowVimActions = 'true'
 set notimeout
 set which-key
