@@ -9,7 +9,7 @@ set ignorecase
 set matchpairs
 set multiple-cursors
 set number
-"set relativenumber
+set relativenumber
 set smartcase
 set surround
 set wrapscan
@@ -26,7 +26,7 @@ set ideavimsupport=
 map <A-x> :action GotoAction<cr>
 
 " evil-escape
-imap jk <Esc>
+"imap jk <Esc>
 
 " Insert newline above
 nnoremap [<Space> O<Esc>j
@@ -83,7 +83,7 @@ inoremap <A-f> <Esc>:action EditorNextWord<CR>a
 map <Leader>/ <Action>(FindInPath)
 let g:WhichKeyDesc_search_project1 = '<leader>/ Search project'
 " Find file
-map <Leader>. <Action>(GotoFile)
+map <Leader>. <Action>(GotoClass)
 let g:WhichKeyDesc_find_file1 = '<leader>. Find file'
 " Jump to bookmark
 map <Leader><CR> <Action>(Bookmarks)
@@ -131,7 +131,6 @@ let g:WhichKeyDesc_save_all_buffers = '<leader>bS Save all buffers'
 
 "
 " +code
-
 let g:WhichKeyDesc_code_leader = '<leader>c +code'
 " Jump to references
 map <Leader>cD <Action>(ShowUsages)
@@ -142,6 +141,15 @@ let g:WhichKeyDesc_exec_intention_action = '<leader>ca Execute Intention Action'
 " Compile
 map <Leader>cc <Action>(CompileDirty)
 let g:WhichKeyDesc_compile = '<leader>cc Compile'
+" Refactor
+map <Leader>cs <Action>(RefactoringMenu)
+let g:WhichKeyDesc_refactor = '<leader>cs Refactor'
+" Create File
+map <Leader>cG <Action>(NewElement)
+let g:WhichKeyDesc_new_file = '<leader>cG New File'
+" Generate
+map <Leader>cg <Action>(Generate)
+let g:WhichKeyDesc_generate = '<leader>cg Generate'
 " Jump to definition
 noremap <Leader>cd gd
 let g:WhichKeyDesc_jump_to_def1 = 'gd Jump to definition'
@@ -198,7 +206,7 @@ let g:WhichKeyDesc_file_leader = '<leader>f +file'
 map <Leader>fc <Action>(NewEditorConfigFile)
 let g:WhichKeyDesc_open_project_editorconfig = '<leader>fc Open project editorconfig'
 " Find file
-map <Leader>ff <Action>(SearchEverywhere)
+map <Leader>ff <Action>(GotoFile)
 let g:WhichKeyDesc_find_file2 = '<leader>ff Find file'
 " Recent files
 map <Leader>fr <Action>(RecentFiles)
@@ -240,18 +248,24 @@ let g:WhichKeyDesc_jump_to_next_hunk2 = ']d Jump to next hunk'
 " Switch branch
 map <Leader>gb <Action>(Git.Branches)
 let g:WhichKeyDesc_switch_branch = '<leader>gb Switch branch'
+" Stage hunk
+map <Leader>gs <Action>(ChangesView.AddUnversioned)
+let g:WhichKeyDesc_stage_hunk = '<leader>gs Stage hunk'
 " Revert hunk
 map <Leader>gr <Action>(Vcs.RollbackChangedLines)
 let g:WhichKeyDesc_revert_hunk = '<leader>gr Revert hunk'
 " Status
-map <Leader>gs <Action>(Vcs.Show.Shelf)
-let g:WhichKeyDesc_status = '<leader>gs Status'
+map <Leader>gg <Action>(Vcs.Show.Shelf)
+let g:WhichKeyDesc_status = '<leader>gg Status'
 " Git time machine
 map <Leader>gt <Action>(Vcs.ShowTabbedFileHistory)
 let g:WhichKeyDesc_git_time_machine = '<leader>gt Time machine'
 " Blame
 map <Leader>gB <Action>(Annotate)
 let g:WhichKeyDesc_blame = '<leader>gB Blame'
+" Log
+map <Leader>gL <Action>(Vcs.Show.Log)
+let g:WhichKeyDesc_git_log = '<leader>gL Log'
 " Clone
 map <Leader>gC <Action>(Vcs.VcsClone)
 let g:WhichKeyDesc_clone1 = '<leader>gC Clone'
@@ -264,7 +278,10 @@ let g:WhichKeyDesc_git_stage_file = '<leader>gS Git stage file'
 
 " +create
 let g:WhichKeyDesc_git_create_leader = '<leader>gc +create'
-" Branch
+" Commit
+map <Leader>gcc <Action>(Git.Commit.Stage)
+let g:WhichKeyDesc_create_commit = '<leader>gcc Commit'
+" w Branch
 map <Leader>gcb <Action>(Git.CreateNewBranch)
 let g:WhichKeyDesc_create_branch = '<leader>gcb Branch'
 " Pull request
@@ -313,8 +330,8 @@ let g:WhichKeyDesc_change_theme = '<leader>ht Change theme'
 
 let g:WhichKeyDesc_insert_leader = '<leader>i +insert'
 " Insert emoji/unicode
-nmap <Leader>ie <Action>(EmojiAndSymbols)
-imap <A-Space>ie <Action>(EmojiAndSymbols)
+nmap <Leader>ie <Action>(EmojiPicker.Open)
+imap <A-Space>ie <Action>(EmojiPicker.Open)
 let g:WhichKeyDesc_insert_emoji_unicode1 = '<leader>ie Insert emoji/unicode'
 " Insert Live Template
 nmap <Leader>is <Action>(InsertLiveTemplate)
@@ -373,13 +390,27 @@ let g:WhichKeyDesc_switch_projects = '<leader>pp Switch projects'
 " Show TODO
 map <Leader>pt <Action>(ActivateTODOToolWindow)
 let g:WhichKeyDesc_show_todo = '<leader>pt Show TODO'
-" List project tasks
-map <Leader>pz <Action>(RunAnything)
-let g:WhichKeyDesc_list_project_tasks = '<leader>pz List project tasks'
-" Run project
-map <Leader>pR <Action>(Run)
-let g:WhichKeyDesc_run_project = '<leader>pR Run project'
 
+
+"
+" +run
+
+let g:WhichKeyDesc_project_leader = '<leader>r +run'
+" List run tasks
+map <Leader>rz <Action>(RunAnything)
+let g:WhichKeyDesc_list_project_tasks = '<leader>rz List project tasks'
+" Run project
+map <Leader>rR <Action>(Run)
+let g:WhichKeyDesc_run_project = '<leader>rR Run project'
+" Run Test
+map <Leader>rt <Action>(RunClass)
+let g:WhichKeyDesc_run_test = '<leader>rt Run Test'
+" Debug Test
+map <Leader>rd <Action>(Debug)
+let g:WhichKeyDesc_debug = '<leader>rd Debug Test'
+" Coverage Test
+map <Leader>rc <Action>(Debug)
+let g:WhichKeyDesc_coverage = '<leader>rc Coverage Test'
 
 "
 " +toggle
@@ -464,9 +495,11 @@ map gsge <Plug>(easymotion-gel)
 
 " highlightedyank
 set highlightedyank
-
+"s	Open selected file in a new vsplit	g:NERDTreeMapOpenVSplit
+"t	Open selected node/bookmark in a new tab	g:NERDTreeMapOpenInTab
+"T	Same as 't' but keep the focus on the current tab	g:NERDTreeMapOpenInTabSilent
 " NERDTree
-let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapActivateNode = 's'
 let g:NERDTreeMapPreview = '<Nop>'
 let g:NERDTreeMapOpenInTab = 'oo'
 let g:NERDTreeMapOpenInTabSilent = '<Nop>'
@@ -475,14 +508,14 @@ let g:NERDTreeMapPreviewSplit = '<Nop>'
 let g:NERDTreeMapOpenVSplit = 'os'
 let g:NERDTreeMapPreviewVSplit = '<Nop>'
 let g:NERDTreeMapOpenRecursively = '<Nop>'
-let g:NERDTreeMapCloseDir = 'h'
+let g:NERDTreeMapCloseDir = 'r'
 let g:NERDTreeMapCloseChildren = '<Nop>'
 let g:NERDTreeMapJumpRoot = '<Nop>'
-let g:NERDTreeMapJumpParent = 'K'
+let g:NERDTreeMapJumpParent = 'N'
 let g:NERDTreeMapJumpFirstChild = '<Nop>'
 let g:NERDTreeMapJumpLastChild = '<Nop>'
-let g:NERDTreeMapJumpNextSibling = 'L'
-let g:NERDTreeMapJumpPrevSibling = 'H'
+let g:NERDTreeMapJumpNextSibling = 'S'
+let g:NERDTreeMapJumpPrevSibling = 'R'
 let g:NERDTreeMapRefresh = '<Nop>'
 let g:NERDTreeMapRefreshRoot = 'gr'
 let g:NERDTreeMapMenu = '<Nop>'
@@ -491,7 +524,7 @@ let g:NERDTreeMapToggleZoom = '<Nop>'
 set NERDTree
 
 " vim-which-key
-let g:WhichKey_DefaultDelay = 700
+let g:WhichKey_DefaultDelay = 500
 let g:WhichKey_ShowVimActions = 'true'
 set notimeout
 set which-key
