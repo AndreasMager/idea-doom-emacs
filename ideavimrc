@@ -411,6 +411,10 @@ let g:WhichKeyDesc_debug = '<leader>rd Debug Test'
 " Coverage Test
 map <Leader>rc <Action>(Debug)
 let g:WhichKeyDesc_coverage = '<leader>rc Coverage Test'
+" ReRun
+map <Leader>rr <Action>(Rerun)
+let g:WhichKeyDesc_rerun = '<leader>rr ReRun'
+
 
 "
 " +toggle
@@ -457,7 +461,7 @@ noremap <Leader>wr <C-w>h
 noremap <Leader>wt <C-w>j
 noremap <Leader>wn <C-w>k
 noremap <Leader>ws <C-w>l
-noremap <Leader>ws <C-w>s
+noremap <Leader>wh <C-w>s
 noremap <Leader>wv <C-w>v
 noremap <Leader>ww <C-w>w
 noremap <Leader>wW <C-w>W
@@ -518,7 +522,7 @@ let g:NERDTreeMapJumpNextSibling = 'S'
 let g:NERDTreeMapJumpPrevSibling = 'R'
 let g:NERDTreeMapRefresh = '<Nop>'
 let g:NERDTreeMapRefreshRoot = 'gr'
-let g:NERDTreeMapMenu = '<Nop>'
+let g:NERDTreeMapMenu = 'm'
 " let g:NERDTreeMapQuit = 'q'
 let g:NERDTreeMapToggleZoom = '<Nop>'
 set NERDTree
