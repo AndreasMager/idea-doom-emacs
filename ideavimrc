@@ -179,6 +179,25 @@ let g:WhichKeyDesc_find_type_def = '<leader>ct Find type definition'
 map <Leader>cC <Action>(Compile)
 let g:WhichKeyDesc_recompile = '<leader>cC Recompile'
 
+" Delete Stuff with out clipboard
+nnoremap x "_x
+
+nnoremap d "_d
+vnoremap d "_d
+
+nnoremap D "_D
+
+vnoremap p "0dP
+
+nnoremap <Leader>d ""d
+let g:WhichKeyDesc_cut = '<leader>d cut'
+
+nnoremap <Leader>D ""D
+let g:WhichKeyDesc_cut_line_end = '<leader>D cut till line End'
+
+vnoremap <Leader>d ""d
+let g:WhichKeyDesc_cut_visual = '<leader>d cut'
+
 " Show error description
 map <C-c>!h <Action>(ShowErrorDescription)
 " Go to previous error
